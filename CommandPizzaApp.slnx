@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="../Business Layer/Business Layer.csproj" Id="32cb264b-ff69-451e-a62d-d8334eef28b7" />
+  <Project Path="../PizzaDataAccess - Data Layer/PizzaDataAccess - Data Layer.csproj" Id="76db9222-bae2-4554-a5c2-e088225d8bb5" />
+  <Project Path="CommandPizzaApp.csproj" Id="f62805cc-4d45-4c7a-8935-f8c1fe879e38" />
+</Solution>
