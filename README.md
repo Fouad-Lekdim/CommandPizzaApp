@@ -28,7 +28,7 @@ CommandPizzaApp is a point-of-sale pizza ordering system with a clean separation
 
 ### 🧑‍💻 Customer Interface
 - **Compose your pizza** — choose from available sizes, crust types, and toppings
-- **Dine-in or takeaway** — select where to eat and have it reflected in the order
+- **Eat in or takeaway** — select where to eat and have it reflected in the order
 - **Live order summary** — price and order details update in real time as selections change
 - **Place Order** — submit the composed order to the database
 - **Reset** — clear all selections and start fresh
@@ -87,7 +87,7 @@ Orders
   └── FK → CrustTypes   (type of crust chosen)
 ```
 
-> Toppings and dine-in/takeaway preference are also captured as part of each order record.
+> Toppings and eat in/takeaway preference are also captured as part of each order record.
 
 ---
 
@@ -132,7 +132,7 @@ Orders
    - Build the solution (`Ctrl+Shift+B`)
 
 5. **Run the application**
-   - Set the UI project as the startup project
+   - In Solution Explorer, right-click the **CommandPizzaApp** project and select **"Set as Startup Project"**
    - Press `F5` or click **Start**
 
 ---
@@ -143,7 +143,7 @@ Orders
 
 1. Launch the application — the main order form opens
 2. Select a **pizza size**, **crust type**, and desired **toppings**
-3. Choose **dine-in** or **takeaway**
+3. Choose **eat in** or **takeaway**
 4. The **order summary panel** updates in real time with selected options and the calculated price
 5. Click **Place Order** to save the order to the database
 6. Use **Reset** to clear the form and start a new order
