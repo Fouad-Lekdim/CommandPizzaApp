@@ -99,14 +99,17 @@ Orders
 - [Visual Studio](https://visualstudio.microsoft.com/) (2019 or later recommended)
 - [Microsoft SQL Server](https://www.microsoft.com/en-us/sql-server) (LocalDB or full instance)
 - .NET Framework (version compatible with project settings)
+- [Git for Windows](https://git-scm.com/download/win) — required to clone the repository and use Git commands from the terminal
 
 ### Installation
 
 1. **Clone the repository**
+   - Open **Git Bash** (installed with Git for Windows) and run:
    ```bash
    git clone https://github.com/Fouad-Lekdim/CommandPizzaApp.git
    cd CommandPizzaApp
    ```
+   > **Note:** Use Git Bash instead of PowerShell — the `git` command is not available in PowerShell by default on Windows.
 
 2. **Set up the database**
    - Open SQL Server Management Studio (SSMS) or Visual Studio's SQL tools
@@ -114,24 +117,9 @@ Orders
    - Open the file `database.sql` found at the root of the repository
    - Execute the script (`F5` in SSMS) — it will automatically create the `PizzaDB` database, all tables, seed `PizzaSizes` (Small, Medium, Large) and `CrustTypes` (Thin, Thick), and leave `Orders` empty ready to be filled through the app
    - You should see `PizzaDB is ready. You can now run the app.` in the Messages panel when done
+   > **Note:** The app connects to `Server=.;Database=PizzaDB` by default, which works for a local default SQL Server instance. If you are using a named instance (e.g., SQL Express), open `DataAccessSettings.cs` in the `PizzaDataAccess - Data Layer` project in Visual Studio and update the `Server=` value accordingly.
 
-3. **Configure the connection string**
-   - Open the `DataAccessLayer` project
-   - Update the connection string in the configuration file (e.g., `App.config` or a dedicated `DBConnection` class) to point to your SQL Server instance:
-     ```xml
-     <connectionStrings>
-       <add name="PizzaDB"
-            connectionString="Server=YOUR_SERVER;Database=PizzaDB;Integrated Security=True;"
-            providerName="System.Data.SqlClient" />
-     </connectionStrings>
-     ```
-
-4. **Open and build the solution**
-   - Open `CommandPizzaApp.sln` in Visual Studio
-   - Restore NuGet packages if prompted
-   - Build the solution (`Ctrl+Shift+B`)
-
-5. **Run the application**
+3. **Run the application**
    - In Solution Explorer, right-click the **CommandPizzaApp** project and select **"Set as Startup Project"**
    - Press `F5` or click **Start**
 
