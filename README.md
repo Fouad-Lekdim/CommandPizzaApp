@@ -162,19 +162,20 @@ The following features are planned for future releases:
 ```
 CommandPizzaApp/
 │
-├── DataAccessLayer/         # ADO.NET database access, SQL queries
+├── PizzaDataAccess - Data Layer/   # ADO.NET database access, SQL queries
+│   ├── DataAccessSettings.cs       # Connection string configuration
+│   └── PizzaDataAccess.cs
+│
+├── Business Layer/                 # Business logic, pricing rules, order processing
+│   └── PizzaOrder.cs
+│
+├── CommandPizzaApp/                # Windows Forms UI
+│   ├── Form1.cs                    # Customer order interface
+│   ├── FrmPersonalSpace.cs         # Staff order management panel
 │   └── ...
 │
-├── BusinessLayer/           # Business logic, pricing rules, order processing
-│   └── ...
-│
-├── UserLayer/               # Windows Forms UI
-│   ├── MainForm.cs          # Customer order interface
-│   ├── PersonalSpaceForm.cs # Staff order management panel
-│   └── ...
-│
-├── database.sql             # Run this to create and seed the database
-└── CommandPizzaApp.sln      # Solution file
+├── database.sql                    # Run this to create and seed the database
+└── CommandPizzaApp.sln             # Solution file
 ```
 
 ---
