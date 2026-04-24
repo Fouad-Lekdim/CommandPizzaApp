@@ -93,16 +93,16 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Business Layer\Business Layer.csproj">
-      <Project>{32cb264b-ff69-451e-a62d-d8334eef28b7}</Project>
-      <Name>Business Layer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\Pizza app Main Image.jpg" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\ai-generated-delicious-pizza-on-black-stone-top-view-fresh-ingredients-space-for-text-on-left-side-free-photo.jpeg" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Business Layer\Business Layer.csproj">
+      <Project>{32cb264b-ff69-451e-a62d-d8334eef28b7}</Project>
+      <Name>Business Layer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
