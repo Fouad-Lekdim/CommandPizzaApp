@@ -120,6 +120,7 @@ Orders
    > **Note:** The app connects to `Server=.;Database=PizzaDB` by default, which works for a local default SQL Server instance. If you are using a named instance (e.g., SQL Express), open `DataAccessSettings.cs` in the `PizzaDataAccess - Data Layer` project in Visual Studio and update the `Server=` value accordingly.
 
 3. **Run the application**
+   - Open `CommandPizzaApp.sln` in Visual Studio
    - In Solution Explorer, right-click the **CommandPizzaApp** project and select **"Set as Startup Project"**
    - Press `F5` or click **Start**
 
