@@ -109,9 +109,17 @@ Orders
    ```
 
 2. **Set up the database**
+<<<<<<< HEAD
+   - Open SQL Server Management Studio (SSMS) or Visual Studio's SQL tools
+   - Connect to your SQL Server instance
+   - Open the file `database.sql` found at the root of the repository
+   - Execute the script (`F5` in SSMS) — it will automatically create the `PizzaDB` database, all tables, seed `PizzaSizes` (Small, Medium, Large) and `CrustTypes` (Thin, Thick), and leave `Orders` empty ready to be filled through the app
+   - You should see `PizzaDB is ready. You can now run the app.` in the Messages panel when done
+=======
    - Open SQL Server Management Studio (SSMS) or use Visual Studio's SQL tools
    - Create a new database (e.g., `CommandPizzaDB`)
    - Run the provided SQL scripts to create the tables (`Orders`, `PizzaSizes`, `CrustTypes`) and seed initial data
+>>>>>>> a507492ebc8d2d45b9055ec806c4b82768090879
 
 3. **Configure the connection string**
    - Open the `DataAccessLayer` project
@@ -119,7 +127,11 @@ Orders
      ```xml
      <connectionStrings>
        <add name="PizzaDB"
+<<<<<<< HEAD
+            connectionString="Server=YOUR_SERVER;Database=PizzaDB;Integrated Security=True;"
+=======
             connectionString="Server=YOUR_SERVER;Database=CommandPizzaDB;Integrated Security=True;"
+>>>>>>> a507492ebc8d2d45b9055ec806c4b82768090879
             providerName="System.Data.SqlClient" />
      </connectionStrings>
      ```
@@ -183,6 +195,10 @@ CommandPizzaApp/
 │   ├── PersonalSpaceForm.cs # Staff order management panel
 │   └── ...
 │
+<<<<<<< HEAD
+├── database.sql             # Run this to create and seed the database
+=======
+>>>>>>> a507492ebc8d2d45b9055ec806c4b82768090879
 └── CommandPizzaApp.sln      # Solution file
 ```
 
