@@ -75,5 +75,36 @@ namespace CommandPizzaApp
 
             dgvPizzaOrders.DataSource = dtFilteredOrders;
         }
+
+        private void EditOrder_Click(object sender, EventArgs e)
+        {
+            Form1 editOrderForm = new Form1((int)dgvPizzaOrders.CurrentRow.Cells[0].Value);
+            editOrderForm.ShowDialog();
+        }
+
+        private void DeleteOrder_Click(object sender, EventArgs e)
+        {
+            int orderID = (int)dgvPizzaOrders.CurrentRow.Cells[0].Value;
+            if (MessageBox.Show($"Are you sure you want to delete order No {dgvPizzaOrders.CurrentRow.Cells[0].Value}", "Delete Order", MessageBoxButtons.OKCancel) == DialogResult.OK)
+            {
+                if (clsPizzaOrder.DeleteExistingOrder(orderID))
+                {
+                    MessageBox.Show("Order No " + orderID + " Successfully Deleted :-)");
+                    return;
+                }
+
+                MessageBox.Show("Problem occured: Order couldn't be deleted :-(");
+            }
+        }
+
+        private void dgvPizzaOrders_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void dgvPizzaOrders_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

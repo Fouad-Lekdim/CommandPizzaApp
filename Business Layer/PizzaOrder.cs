@@ -21,6 +21,39 @@ namespace Business_Layer
         public string WhereToEat { get; set; }
         public float TotalPrice { get; set; }
 
+        public const string smallSize = "Small";
+        public const string mediumSize = "Medium";
+        public const string largeSize = "Large";
+
+        public const string ExtraCheese = "Extra Cheese";
+        public const string Mushrooms = "Mashrooms";
+        public const string Tomatoes = "Tomatoes";
+        public const string Onion = "Onion";
+        public const string Olives = "Olives";
+        public const string GreenPepper = "Green Pepper";
+        public const string NoToppings = "No Toppings";
+
+        public const string thinCrust = "Thin";
+        public const string thickCrust = "Thick";
+        public const string toEatIn = "EatIn";
+        public const string toTakeAway = "TakeAway";
+
+        public const float _toppingUnitPrice = 2f;
+
+        public static readonly Dictionary<int, string> pizzaSizesMap = new Dictionary<int, string>
+        {
+            { 1, smallSize},
+            { 2, mediumSize },
+            { 3, largeSize }
+        };
+
+        public static readonly Dictionary<int, string> crustTypesMap = new Dictionary<int, string>
+        {
+            {1, thinCrust },
+            {2, thickCrust },
+        };
+
+
         public clsPizzaOrder()
         {
             this.OrderId = -1;
@@ -42,17 +75,10 @@ namespace Business_Layer
             this.Toppings=toppings;
             this.WhereToEat=whereToEat;
             this.TotalPrice = totalPrice;
+
+            this.Size = pizzaSizesMap[sizeId];
+            this.CrustType = crustTypesMap[crustId];
         }
-
-        public static string[] _toppings = {"Extra Cheese", "Mashrooms", "Tomatoes", "Onion",
-                                "Olives", "Green Pepper"};
-
-        public const string thinCrust = "Thin";
-        public const string thickCrust = "Thick";
-        public const string toEatIn = "EatIn";
-        public const string toTakeAway = "TakeAway";
-
-        public const float _toppingUnitPrice = 2f;
 
         public float UpdateSelectedSizePrice()
         {
@@ -82,6 +108,17 @@ namespace Business_Layer
         {
             return clsPizzaDataAccess.AddNewPizzaOrder(this.SizeId, this.CrustTypeId, this.Toppings,
                 this.WhereToEat, this.TotalPrice);
+        }
+
+        public bool UpdateExistingOrder()
+        {
+            return clsPizzaDataAccess.UpdatePizzaOrder(this.OrderId, this.SizeId, this.CrustTypeId,
+                this.Toppings, this.WhereToEat, this.TotalPrice);
+        }
+
+        public static bool DeleteExistingOrder(int OrderId)
+        {
+            return clsPizzaDataAccess.DeletePizzaOrder(OrderId);
         }
 
         public static DataTable GetAllPizzaOrders()

@@ -65,6 +65,8 @@ namespace CommandPizzaApp
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.btnPersonalSpace = new System.Windows.Forms.Button();
+            this.lblAddEditOrderTitle = new System.Windows.Forms.Label();
+            this.btnEditOrder = new System.Windows.Forms.Button();
             this.gbSize.SuspendLayout();
             this.gbCrustType.SuspendLayout();
             this.gbToppings.SuspendLayout();
@@ -240,7 +242,7 @@ namespace CommandPizzaApp
             // 
             // btnOrderPizza
             // 
-            this.btnOrderPizza.BackColor = System.Drawing.Color.LightCyan;
+            this.btnOrderPizza.BackColor = System.Drawing.Color.OldLace;
             resources.ApplyResources(this.btnOrderPizza, "btnOrderPizza");
             this.btnOrderPizza.Name = "btnOrderPizza";
             this.btnOrderPizza.UseVisualStyleBackColor = false;
@@ -248,7 +250,7 @@ namespace CommandPizzaApp
             // 
             // btnResetForm
             // 
-            this.btnResetForm.BackColor = System.Drawing.Color.LightCyan;
+            this.btnResetForm.BackColor = System.Drawing.Color.OldLace;
             resources.ApplyResources(this.btnResetForm, "btnResetForm");
             this.btnResetForm.Name = "btnResetForm";
             this.btnResetForm.UseVisualStyleBackColor = false;
@@ -256,7 +258,8 @@ namespace CommandPizzaApp
             // 
             // gbOrderSummary
             // 
-            this.gbOrderSummary.BackColor = System.Drawing.Color.Transparent;
+            this.gbOrderSummary.BackColor = System.Drawing.Color.DarkOliveGreen;
+            resources.ApplyResources(this.gbOrderSummary, "gbOrderSummary");
             this.gbOrderSummary.Controls.Add(this.lblToppings);
             this.gbOrderSummary.Controls.Add(this.lblWhereToEat);
             this.gbOrderSummary.Controls.Add(this.lblCrustType);
@@ -269,7 +272,6 @@ namespace CommandPizzaApp
             this.gbOrderSummary.Controls.Add(this.label4);
             this.gbOrderSummary.Controls.Add(this.label3);
             this.gbOrderSummary.Controls.Add(this.label2);
-            resources.ApplyResources(this.gbOrderSummary, "gbOrderSummary");
             this.gbOrderSummary.ForeColor = System.Drawing.Color.White;
             this.gbOrderSummary.Name = "gbOrderSummary";
             this.gbOrderSummary.TabStop = false;
@@ -277,90 +279,116 @@ namespace CommandPizzaApp
             // lblToppings
             // 
             this.lblToppings.BackColor = System.Drawing.Color.Transparent;
-            this.lblToppings.ForeColor = System.Drawing.Color.Black;
             resources.ApplyResources(this.lblToppings, "lblToppings");
+            this.lblToppings.ForeColor = System.Drawing.Color.White;
             this.lblToppings.Name = "lblToppings";
             // 
             // lblWhereToEat
             // 
             resources.ApplyResources(this.lblWhereToEat, "lblWhereToEat");
-            this.lblWhereToEat.ForeColor = System.Drawing.Color.Black;
+            this.lblWhereToEat.BackColor = System.Drawing.Color.Transparent;
+            this.lblWhereToEat.ForeColor = System.Drawing.Color.White;
             this.lblWhereToEat.Name = "lblWhereToEat";
             // 
             // lblCrustType
             // 
             resources.ApplyResources(this.lblCrustType, "lblCrustType");
-            this.lblCrustType.ForeColor = System.Drawing.Color.Black;
+            this.lblCrustType.BackColor = System.Drawing.Color.Transparent;
+            this.lblCrustType.ForeColor = System.Drawing.Color.White;
             this.lblCrustType.Name = "lblCrustType";
             // 
             // lblSize
             // 
             resources.ApplyResources(this.lblSize, "lblSize");
-            this.lblSize.ForeColor = System.Drawing.Color.Black;
+            this.lblSize.BackColor = System.Drawing.Color.Transparent;
+            this.lblSize.ForeColor = System.Drawing.Color.White;
             this.lblSize.Name = "lblSize";
             // 
             // lblOrderNum
             // 
             resources.ApplyResources(this.lblOrderNum, "lblOrderNum");
-            this.lblOrderNum.ForeColor = System.Drawing.Color.Black;
+            this.lblOrderNum.BackColor = System.Drawing.Color.Transparent;
+            this.lblOrderNum.ForeColor = System.Drawing.Color.White;
             this.lblOrderNum.Name = "lblOrderNum";
             // 
             // lblTotalPrice
             // 
             resources.ApplyResources(this.lblTotalPrice, "lblTotalPrice");
+            this.lblTotalPrice.BackColor = System.Drawing.Color.Transparent;
             this.lblTotalPrice.ForeColor = System.Drawing.Color.White;
             this.lblTotalPrice.Name = "lblTotalPrice";
             // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
+            this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.ForeColor = System.Drawing.Color.White;
             this.label7.Name = "label7";
             // 
             // label6
             // 
             resources.ApplyResources(this.label6, "label6");
-            this.label6.ForeColor = System.Drawing.Color.Black;
+            this.label6.BackColor = System.Drawing.Color.Transparent;
+            this.label6.ForeColor = System.Drawing.Color.White;
             this.label6.Name = "label6";
             // 
             // label5
             // 
             resources.ApplyResources(this.label5, "label5");
-            this.label5.ForeColor = System.Drawing.Color.Black;
+            this.label5.BackColor = System.Drawing.Color.Transparent;
+            this.label5.ForeColor = System.Drawing.Color.White;
             this.label5.Name = "label5";
             // 
             // label4
             // 
             resources.ApplyResources(this.label4, "label4");
-            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.BackColor = System.Drawing.Color.Transparent;
+            this.label4.ForeColor = System.Drawing.Color.White;
             this.label4.Name = "label4";
             // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
-            this.label3.ForeColor = System.Drawing.Color.Black;
+            this.label3.BackColor = System.Drawing.Color.Transparent;
+            this.label3.ForeColor = System.Drawing.Color.White;
             this.label3.Name = "label3";
             // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
-            this.label2.ForeColor = System.Drawing.Color.Black;
+            this.label2.BackColor = System.Drawing.Color.Transparent;
+            this.label2.ForeColor = System.Drawing.Color.White;
             this.label2.Name = "label2";
             // 
             // btnPersonalSpace
             // 
-            this.btnPersonalSpace.BackColor = System.Drawing.SystemColors.Info;
+            this.btnPersonalSpace.BackColor = System.Drawing.SystemColors.HighlightText;
             resources.ApplyResources(this.btnPersonalSpace, "btnPersonalSpace");
             this.btnPersonalSpace.Name = "btnPersonalSpace";
             this.btnPersonalSpace.UseVisualStyleBackColor = false;
             this.btnPersonalSpace.Click += new System.EventHandler(this.btnPersonalSpace_Click);
+            // 
+            // lblAddEditOrderTitle
+            // 
+            resources.ApplyResources(this.lblAddEditOrderTitle, "lblAddEditOrderTitle");
+            this.lblAddEditOrderTitle.ForeColor = System.Drawing.Color.IndianRed;
+            this.lblAddEditOrderTitle.Name = "lblAddEditOrderTitle";
+            // 
+            // btnEditOrder
+            // 
+            this.btnEditOrder.BackColor = System.Drawing.Color.OldLace;
+            resources.ApplyResources(this.btnEditOrder, "btnEditOrder");
+            this.btnEditOrder.Name = "btnEditOrder";
+            this.btnEditOrder.UseVisualStyleBackColor = false;
+            this.btnEditOrder.Click += new System.EventHandler(this.btnEditOrder_Click);
             // 
             // Form1
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = global::CommandPizzaApp.Properties.Resources.ai_generated_delicious_pizza_on_black_stone_top_view_fresh_ingredients_space_for_text_on_left_side_free_photo;
+            this.Controls.Add(this.btnEditOrder);
+            this.Controls.Add(this.lblAddEditOrderTitle);
             this.Controls.Add(this.btnPersonalSpace);
             this.Controls.Add(this.gbOrderSummary);
             this.Controls.Add(this.btnResetForm);
@@ -423,6 +451,8 @@ namespace CommandPizzaApp
         private System.Windows.Forms.Label lblCrustType;
         private System.Windows.Forms.Button btnPersonalSpace;
         private System.Windows.Forms.Label lblToppings;
+        private System.Windows.Forms.Label lblAddEditOrderTitle;
+        private System.Windows.Forms.Button btnEditOrder;
     }
 }
 

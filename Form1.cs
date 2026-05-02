@@ -13,31 +13,42 @@ namespace CommandPizzaApp
 {
     public partial class Form1 : Form
     {
-        RadioButton _currentCheckedRBtnSize;
-        clsPizzaOrder order = new clsPizzaOrder();
-
+        clsPizzaOrder _order;
+        int _orderNumber;
+        enum Mode { eAddNew, eEdit };
+        Mode _Mode;
 
         public Form1()
         {
             InitializeComponent();
+
+            _Mode = Mode.eAddNew;
+
+        }
+        public Form1( int orderId )
+        {
+            InitializeComponent();
+            _orderNumber = orderId;    
+            _Mode = Mode.eEdit;
+            
         }
 
         public void UpdatePizzaSize()
         {
             if (rbtnSmall.Checked)
             {
-                order.Size = "Small";
+                _order.Size = clsPizzaOrder.smallSize;
             }
             else if (rbtnMedium.Checked)
             {
-                order.Size = "Medium";                
+                _order.Size = clsPizzaOrder.mediumSize;                
             }
             else if (rbtnLarge.Checked)
             {
-                order.Size = "Large";
+                _order.Size = clsPizzaOrder.largeSize;
             }
 
-            lblSize.Text = order.Size;
+            lblSize.Text = _order.Size;
             UpdateTotalPrice();
         }
 
@@ -46,30 +57,30 @@ namespace CommandPizzaApp
             List<string> toppings = new List<string>();
 
             if (chbExtraCheese.Checked)
-                toppings.Add(clsPizzaOrder._toppings[0]);
+                toppings.Add(clsPizzaOrder.ExtraCheese);
 
             if (chbMashrooms.Checked)
-                toppings.Add(clsPizzaOrder._toppings[1]);
+                toppings.Add(clsPizzaOrder.Mushrooms);
 
             if (chbTomatoes.Checked)
-                toppings.Add(clsPizzaOrder._toppings[2]);
+                toppings.Add(clsPizzaOrder.Tomatoes);
 
             if (chbOlives.Checked)
-                toppings.Add(clsPizzaOrder._toppings[3]);
+                toppings.Add(clsPizzaOrder.Olives);
 
             if (chbOnion.Checked)
-                toppings.Add(clsPizzaOrder._toppings[4]);
+                toppings.Add(clsPizzaOrder.Onion);
 
             if (chbGreenPepper.Checked)
-                toppings.Add(clsPizzaOrder._toppings[5]);
+                toppings.Add(clsPizzaOrder.GreenPepper);
 
             if (toppings.Count == 0)
-                order.Toppings = "No Toppings";
+                _order.Toppings = clsPizzaOrder.NoToppings;
             else
-                order.Toppings = string.Join(", ", toppings);
+                _order.Toppings = string.Join(", ", toppings);
             
             
-            lblToppings.Text = order.Toppings;
+            lblToppings.Text = _order.Toppings;
             UpdateTotalPrice();
             
         }
@@ -78,30 +89,30 @@ namespace CommandPizzaApp
         {
             if (rbtnThin.Checked)
             {
-                order.CrustType = clsPizzaOrder.thinCrust;
+                _order.CrustType = clsPizzaOrder.thinCrust;
             }
             else if (rbtnThick.Checked)
             {
-                order.CrustType = clsPizzaOrder.thickCrust;
+                _order.CrustType = clsPizzaOrder.thickCrust;
             }
-            lblCrustType.Text = order.CrustType;
+            lblCrustType.Text = _order.CrustType;
             UpdateTotalPrice();
         }
 
         public void UpdateWhereToEat()
         {
             if (rbtnEatIn.Checked)
-                order.WhereToEat = clsPizzaOrder.toEatIn;
+                _order.WhereToEat = clsPizzaOrder.toEatIn;
 
             if (rbtnTakeAway.Checked)
-                order.WhereToEat = clsPizzaOrder.toTakeAway;
+                _order.WhereToEat = clsPizzaOrder.toTakeAway;
 
-            lblWhereToEat.Text = order.WhereToEat;
+            lblWhereToEat.Text = _order.WhereToEat;
         }
 
         public float GetSelectedCrustPrice()
         {
-            return order.UpdateSelectedCrustPrice();
+            return _order.UpdateSelectedCrustPrice();
         }
 
         public float CalculateSelectedToppingsPrice()
@@ -137,15 +148,15 @@ namespace CommandPizzaApp
 
         public float GetSelectedSizePrice()
         {
-            return order.UpdateSelectedSizePrice();
+            return _order.UpdateSelectedSizePrice();
         }
 
         public float CalculateTotalPrice()
         {
-            order.TotalPrice = GetSelectedSizePrice() + CalculateSelectedToppingsPrice()
+            _order.TotalPrice = GetSelectedSizePrice() + CalculateSelectedToppingsPrice()
                     + GetSelectedCrustPrice();
 
-            return order.TotalPrice;
+            return _order.TotalPrice;
         }
 
         public void UpdateTotalPrice()
@@ -161,22 +172,108 @@ namespace CommandPizzaApp
             UpdateWhereToEat();
             UpdateTotalPrice();
         }
+        private void ExistingOrder_PizzaSizeLoad()
+        {
+            if (_order.Size == clsPizzaOrder.smallSize)
+                rbtnSmall.Checked = true;
+            else if (_order.Size == clsPizzaOrder.mediumSize)
+                rbtnMedium.Checked = true;
+            else
+                rbtnLarge.Checked = true;
+        }
+        private void ExistingOrder_CrustTypeLoad()
+        {
+            if (_order.CrustType == clsPizzaOrder.thinCrust)
+                rbtnThin.Checked = true;
+            else
+                rbtnThick.Checked = true;
+        }
+        private void ExistingOrder_WhereToEatLoad()
+        {
+            if (_order.WhereToEat == clsPizzaOrder.toEatIn)
+                rbtnEatIn.Checked = true;
+            else
+                rbtnTakeAway.Checked = true;
+        }
+        private void ExistingOrder_ToppingsLoad()
+        {
+            if (_order.Toppings == clsPizzaOrder.NoToppings)
+                return;
+
+            string[] toppingsFromDB = _order.Toppings.Split(',').Select(t => t.Trim()).ToArray();
+            
+            Dictionary<string, CheckBox> checkedToppinsMap = new Dictionary<string, CheckBox>()
+            {
+                { clsPizzaOrder.ExtraCheese, chbExtraCheese },
+                { clsPizzaOrder.Mushrooms, chbMashrooms},
+                { clsPizzaOrder.Tomatoes, chbTomatoes },
+                { clsPizzaOrder.Onion, chbOnion },
+                { clsPizzaOrder.Olives, chbOlives },
+                { clsPizzaOrder.GreenPepper, chbGreenPepper }
+            };
+
+            foreach(string topp in toppingsFromDB)
+            {
+                checkedToppinsMap[topp].Checked = true;
+            }
+        }
+        private void ExistingOrder_FormLoad()
+        {
+            ExistingOrder_PizzaSizeLoad();
+            ExistingOrder_CrustTypeLoad();
+            ExistingOrder_WhereToEatLoad();
+            ExistingOrder_ToppingsLoad();
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
+            if (_Mode == Mode.eAddNew)
+            {
+                lblAddEditOrderTitle.Text = "Make a New Order";
+                btnEditOrder.Enabled = false;
+                _order = new clsPizzaOrder();
+                
+            }                
+
+            else if (_Mode == Mode.eEdit)
+            {
+                // Here I linked my current order with the existing one in the database
+                 
+                _order = clsPizzaOrder.FindPizzaOrder(_orderNumber);
+                btnEditOrder.Enabled = true;
+                btnOrderPizza.Enabled = false;
+
+                if (_order == null)
+                {
+                    MessageBox.Show("No Order with Number " + _orderNumber + ", Form will be closed!");
+                    this.Close();
+                    return;
+                }
+                lblAddEditOrderTitle.Text = $"Edit Order No {_order.OrderId}";
+                _order.OrderId = _orderNumber;
+                lblOrderNum.Text = _order.OrderId.ToString();
+                ExistingOrder_FormLoad();
+            }
+
             UpdateOrderSummary();
         }
-
         private void btnOrderPizza_Click(object sender, EventArgs e)
         {
-            lblOrderNum.Tag = Convert.ToSingle(order.AddNewOrder());
+            if (_Mode != Mode.eAddNew)
+            {
+                Console.WriteLine("Non coherency: New Order button must be enabled in Add mode only");
+                btnOrderPizza.Enabled = false;
+                return;
+            }
+
+            lblOrderNum.Tag = Convert.ToSingle(_order.AddNewOrder());
             lblOrderNum.Text = lblOrderNum.Tag.ToString();
+            MessageBox.Show("Order placed successfully:-)");
+
             gbSize.Enabled = false;
             gbCrustType.Enabled = false;
             gbWhereToEat.Enabled = false;
             gbToppings.Enabled = false;
             btnOrderPizza.Enabled = false;
-
-            MessageBox.Show("Order placed successfully:-)");
 
         }
 
@@ -242,6 +339,26 @@ namespace CommandPizzaApp
         {
             FrmPersonalSpace personalSpace = new FrmPersonalSpace();
             personalSpace.Show();
+        }
+
+        private void btnEditOrder_Click(object sender, EventArgs e)
+        {
+            if (_Mode != Mode.eEdit)
+            {
+                Console.WriteLine("Non conherency: Edit button must be enabled in edit mode only");
+                btnEditOrder.Enabled = false;
+                return;
+            }
+
+            if (!_order.UpdateExistingOrder())
+            {
+                MessageBox.Show("Order Not Found");
+                this.Close();
+                return;
+            }
+
+            MessageBox.Show("Order No " + _order.OrderId + " has been successfully modified !");
+            this.Close();
         }
     }
 }

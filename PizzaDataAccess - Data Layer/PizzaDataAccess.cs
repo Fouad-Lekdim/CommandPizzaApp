@@ -210,5 +210,74 @@ namespace PizzaDataAccess___Data_Layer
             return isFound;
         }
 
+
+        public static bool UpdatePizzaOrder(int orderId, int sizeId, int crustId,
+                                string toppings, string whereToEat, float totalPrice)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+
+            string query = @"Update Orders
+                                set PizzaSizeId = @sizeId,
+                                    CrustTypeId = @crustID,
+                                    Toppings = @toppings,
+                                    WhereToEat = @whereToEat,
+                                    TotalPrice = @totalprice
+                                WHERE OrderNumber = @orderID;
+                            ";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("@orderID", orderId);
+            cmd.Parameters.AddWithValue("@sizeId", sizeId);
+            cmd.Parameters.AddWithValue("@crustID", crustId);
+            cmd.Parameters.AddWithValue("@toppings", toppings);
+            cmd.Parameters.AddWithValue("@whereToEat", whereToEat);
+            cmd.Parameters.AddWithValue("@totalprice", totalPrice);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = cmd.ExecuteNonQuery();
+
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+            finally
+            {
+                connection.Close() ;
+            }
+
+            return (rowsAffected > 0);
+        }
+
+        public static bool DeletePizzaOrder(int orderID)
+        {
+            int rowsAffected = 0;
+            SqlConnection connection = new SqlConnection(clsDataAccessSettings.ConnectionString);
+            string query = "DELETE from Orders WHERE OrderNumber = @OrederNum;";
+
+            SqlCommand cmd = new SqlCommand(query, connection);
+
+            cmd.Parameters.AddWithValue("@OrederNum", orderID);
+
+            try
+            {
+                connection.Open();
+                rowsAffected = cmd.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
+            return (rowsAffected > 0);
+        }
     }
 }
