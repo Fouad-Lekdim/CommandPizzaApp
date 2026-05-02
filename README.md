@@ -15,10 +15,11 @@ A Windows Forms desktop application built with C# and .NET that allows customers
 - [Usage](#usage)
 - [Roadmap](#roadmap)
 - [Project Structure](#project-structure)
+- [Contributing](#contributing)
+- [App Demo Video Link](#-app-demo-video-link)
+- [Author](#author)
 
 ---
-
-## Overview
 
 CommandPizzaApp is a point-of-sale pizza ordering system with a clean separation between the customer-facing ordering interface and a staff-facing order management panel. Built using a **3-tier architecture**, the application is designed so that only the presentation layer needs to be replaced to deploy a web or mobile version — the business logic and data access layers remain unchanged.
 
@@ -36,6 +37,8 @@ CommandPizzaApp is a point-of-sale pizza ordering system with a clean separation
 ### 👨‍🍳 Staff – Personal Space
 - **Order list** — view all placed orders in a DataGridView, fetched directly from the database
 - **Search by order number** — quickly locate a specific order using the search box
+- **Edit order** — update the details of an existing order
+- **Delete order** — remove an order from the system
 
 ---
 
@@ -150,11 +153,13 @@ Orders
 The following features are planned for future releases:
 
 - [ ] **Authentication** — secure login required to access the Personal Space
-- [ ] **Edit orders** — allow staff to update the details of an existing order
-- [ ] **Delete orders** — allow staff to remove an order from the system
-- [ ] *(Read and Create operations are already implemented)*
+- [ ] **Print order tickets** — allow staff to print a ticket for each placed order
 
-> Together, these additions will complete full **CRUD** support for order management.
+Full **CRUD** support for order management is now implemented:
+- [x] **Create** — place a new order via the customer interface
+- [x] **Read** — view all orders in the staff panel
+- [x] **Update** — edit an existing order
+- [x] **Delete** — remove an order from the system
 
 ---
 
@@ -184,6 +189,12 @@ CommandPizzaApp/
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
+
+---
+
+## 🎬 App Demo Video Link
+
+https://github.com/user-attachments/assets/33a19293-a348-4616-b07b-08fc860e3da1
 
 ---
 
